@@ -1,4 +1,4 @@
-let player, floor;
+let player, egg, floor;
 
 function setup() {
 	new Canvas(500, 500);
@@ -7,6 +7,9 @@ function setup() {
 
 	player = new Sprite();
 	player.diameter = 50;
+
+	egg = new Sprite();
+
 	floor = new Sprite(300,400,600,5,'static');
 }
 
@@ -27,4 +30,13 @@ function draw() {
 	} else {
 	  player.speed = 0;
 	}
+
+	if (player.x > 500) {
+		camera.x = 750;
+	}
 }
+
+
+// i want the camera to scroll to the right when i hit
+// the right side of the screen
+//so like when player x is 500 move the camera 
