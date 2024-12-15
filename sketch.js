@@ -18,7 +18,7 @@ function setup() {
 	player.diameter = 50;
 	player.layer = 2;
 
-	egg = new Sprite(10,10,10,10,'static');
+	egg = new Sprite(1350,300,10,10,'static');
 
 	// right now its a small square in the top left
 
@@ -83,8 +83,8 @@ function draw() {
 
 	if (player.overlaps(egg)) {
 		//egg.remove();
-		egg.x = random(100);
-		egg.y = random(100);
+		egg.x = random(1300,1700);
+		egg.y = random(100,400);
 		points = points + 1
 	}
 // when player overlaps egg, remove the egg and add a point
@@ -114,20 +114,23 @@ function draw() {
 		textbox(1,"nothin' maam");
 	} if (count == 108){
 		textbox(2,"Well, come on in, dear!");
+	} if (count == 109){
+		textbox(1,"[Find the roach oothecae and lay your eggs...]");
+	} if (count == 110){
+		textbox(1,"[...to complete the extermination.]");
+	} if (count == 111){
+		textbox(1,"[When your parisitoid wasp babies hatch...]");
+	} if (count == 112){
+		textbox(1,"[...they will eat all the roach eggs.]");
+	} if (count == 113){
+		textbox(1,"[Thats the circle of life!]");
 	}
 
 
-				// woman: "hello, is this the exterminator?"
-			// wasp: "yep thats me"
-			// woman: "finally, you're here!"
-			// woman "ive been waiting for you to get rid of these..."
-			// "... nasty cockroaches!" // a shake effect would be great
-			// wasp: "well thats what i'm here for, maam"
-			// wasp: ("and just in time to lay my eggs...")
-			// woman: "what was that?"
-			// wasp: "nothing, maam"
-			// woman: "well, come on in, dear"
 
+		// Find the cockroach oothecae (egg cases) and lay your eggs in them to complete the extermination
+		// (When the ensign wasp babies hatch, they will eat all the unhatched cockroach eggs.)
+		// (Thats the circle of life!)
 
 // system that progresses the dialogue
 // 1 = wasp
