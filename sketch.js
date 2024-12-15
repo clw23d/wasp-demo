@@ -1,9 +1,10 @@
-let player, egg, floor;
+let player, egg, egg2, floor, housewasp, housewoman;
 let img;
 let points = 0;
-let count = 0;
-let doorbellx = 30;
-let doorbelly = 30;
+let count = 1;
+let timer = 60;
+
+
 
 function preload() {
 }
@@ -15,23 +16,34 @@ function setup() {
 
 	player = new Sprite();
 	player.diameter = 50;
+	player.layer = 2;
 
 	egg = new Sprite(10,10,10,10,'static');
 
 	// right now its a small square in the top left
 
-	floor = new Sprite(300,400,600,5,'static');
+	floor = new Sprite(930,400,2000,5,'static');
 
-	doorbell = new Sprite(doorbellx,doorbelly,20,20,'static');
+	doorbell = new Sprite(1300,250,20,20,'static');
 
-	// ideally when i interact with it, it starts dialogue with the homeowner
+	housewasp = new Sprite(350,250,400,300,'static');
+	player.overlaps(housewasp);
+	housewasp.layer = 1;
+
+	housewoman = new Sprite(1500,250,400,300,'static');
+	player.overlaps(housewoman);
+	housewoman.layer = 1;
+
+	//img = loadImage("assets/favicon.png");
+
 
 }
 
+
 function mouseClicked() {
-	print(player.x - doorbell.x);
+	count = count + 1;
 	if (player.collides(doorbell)) {
-		count = count + 1;
+		count = 100;
 	}
 }
 // when count goes up by 1, it goes to the next line of dialogue
@@ -44,6 +56,8 @@ function draw() {
 
 	
 	background('skyblue');
+
+	image(img,0,0);
 
 	player.speed = 5;
 	
@@ -68,7 +82,9 @@ function draw() {
 //shows how many eggs you've collected
 
 	if (player.overlaps(egg)) {
-		egg.remove();
+		//egg.remove();
+		egg.x = random(100);
+		egg.y = random(100);
 		points = points + 1
 	}
 // when player overlaps egg, remove the egg and add a point
@@ -77,11 +93,48 @@ function draw() {
 
 	print(count);
 	if (count == 1) {
-		textbox(1,"dialogue 1");
+		textbox(1,"ugh, it's time to go to work");
 	} if (count == 2){ 
-		textbox(2,"dialogue 2");
+		textbox(1,"i'll fly over and ring the doorbell");
+	} if (count == 100){
+		textbox(2,"Hello, are you the exterminator?");
+	} if (count == 101){
+		textbox(1,"yep that's me");
+	} if (count == 102){
+		textbox(2,"Finally, you're here to get rid of these...");
+	} if (count == 103){
+		textbox(2,"NASTY cockroaches!");
+	} if (count == 104){
+		textbox(1,"sure thing maam, it'll just take a minute");
+	} if (count == 105){
+		textbox(1,"(good, just in time to lay my eggs...)");
+	} if (count == 106){
+		textbox(2,"What was that?");
+	} if (count == 107){
+		textbox(1,"nothin' maam");
+	} if (count == 108){
+		textbox(2,"Well, come on in, dear!");
 	}
+
+
+				// woman: "hello, is this the exterminator?"
+			// wasp: "yep thats me"
+			// woman: "finally, you're here!"
+			// woman "ive been waiting for you to get rid of these..."
+			// "... nasty cockroaches!" // a shake effect would be great
+			// wasp: "well thats what i'm here for, maam"
+			// wasp: ("and just in time to lay my eggs...")
+			// woman: "what was that?"
+			// wasp: "nothing, maam"
+			// woman: "well, come on in, dear"
+
+
 // system that progresses the dialogue
+// 1 = wasp
+// 2 = human
+
+//hold on i might just have it so the different triggers progress the dialogue to different points
+//like on start, set count to 1, set it to 3 when you collect the hat, set it to 4 when you ring doorbell etc
 	
 /*
 	rectMode(CENTER);
@@ -98,11 +151,18 @@ function draw() {
 	text("wwwwwwwwwwwwwwwwwwwwwwwwwwwwww",280,455);
 
 */
+	text(timer, 20, 20);
+
+	if (frameCount % 60 == 0 && timer > 0) {
+		timer --;
+	} if (timer == 0) {
+		text("finish! your score: points", 20, 20);
+	}
 
 }
 
 
-function textbox(p,t){
+function textbox(p,t,z){
 
 	rectMode(CENTER);
 
@@ -186,3 +246,22 @@ function textbox(p,t){
 
 		// ok so im gonna try the stages thing
 		// no first i need dialogue to progress
+
+
+
+		//aight fuck everything else rn im gonna focus on the egg game
+		//set a timer, while the timer is under x, make an egg spawn
+		//at a random x and y between these numbers
+		//spawn two and make it so when you get it they dissapear
+		// and a new one shows up
+		// when the timer stops dont spawn any more
+
+		// let timer = 60
+		// text(timer, x, y)
+		// if (frameCount)
+
+		// how the fuck do i have it start when you click
+		// maybe i just have it turn on the display??
+		//ah so i just make it a function???
+
+	3
